@@ -2,6 +2,7 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const miniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   // Итак,  чтобы вебпак начал свою работу, нужно указать главный (основной) файл, который будет включать в себя все другие необходимые файлы (модули).
@@ -39,7 +40,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader',
+            loader: miniCssExtractPlugin.loader,
           },
           {
             loader: 'css-loader',
@@ -74,6 +75,7 @@ module.exports = {
   //Например, плагин для минификации кода (во время сборки код подвергается очистке и минификации).
   //Или плагин для сборки html страницы и css кода (скрипты вставляются в html, куски css собираются в один файл).
   plugins: [
+    new miniCssExtractPlugin({filename: './style.css'}),
     new HtmlWebpackPlugin({
       template: 'index.html',
     }),
