@@ -1,3 +1,10 @@
 {
-  "extends": ["airbnb/base"]
+  "extends": ["airbnb/base"],
+  "rules":{
+    "no-console":"off",
+    "no-shadow":"off",
+    "no-unused-vars":"warn",
+    "no-empty-function":"warn",
+    "class-methods-use-this":"off"
+  }
 }

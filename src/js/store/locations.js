@@ -6,6 +6,7 @@ class Locations {
     this.countries = null;
     this.cities = null;
   }
+
   async init() {
     const response = await Promise.all([
       this.api.countries(),
@@ -16,6 +17,7 @@ class Locations {
     this.cities = cities;
     return response;
   }
+
   getCitiesByCountryCode(code) {
     return this.cities.filter((city) => city.country_code === code);
   }
