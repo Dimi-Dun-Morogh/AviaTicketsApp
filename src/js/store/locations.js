@@ -86,7 +86,9 @@ class Locations {
   getCityNameByCode(code) {
     return this.cities[code].name;
   }
-
+  getTicketByUniqId(id){
+    return this.lastSearch.find(ticket=>ticket.unique_ID===id);
+  }
   serializeTickets(tickets) {
     return Object.values(tickets).map(ticket => {
       return {
@@ -96,15 +98,16 @@ class Locations {
         airline_logo: this.getAirlineLogoByCode(ticket.airline),
         airline_name: this.getAirlineNameByCode(ticket.airline),
         departure_at: this.formatDate(ticket.departure_at,'dd MMM yyyy hh:mm'),
-        return_at: this.formatDate(ticket.return_at,'dd MMM yyyy hh:mm')
+        return_at: this.formatDate(ticket.return_at,'dd MMM yyyy hh:mm'),
+       unique_ID: ticket.expires_at+Math.random()
       };
     });
   }
   async fetchTickets(params) {
     const response = await this.api.prices(params);
-    console.log(response)
+   
     this.lastSearch = this.serializeTickets(response.data);
-    console.log(this.lastSearch);
+
   }
 }
 const locations = new Locations(api,{ formatDate});

@@ -1,18 +1,17 @@
-class CurrencyUI{
-  constructor(){
-    this.currency = document.getElementById('currency')
+class CurrencyUI {
+  constructor() {
+    this.currency = document.getElementById('currency');
     this.dictionary = {
       USD: '$',
-      EUR: '€'
-    }
+      EUR: '€',
+    };
   }
 
-  get currencyValue(){
+  get currencyValue() {
     return this.currency.value;
   }
-  getCurrencySymbol(){
-    console.log(this.currencyValue)
-    return this.dictionary[this.currencyValue]
+  getCurrencySymbol() {
+    return this.dictionary[this.currencyValue];
   }
 }
 const currencyUI = new CurrencyUI();
